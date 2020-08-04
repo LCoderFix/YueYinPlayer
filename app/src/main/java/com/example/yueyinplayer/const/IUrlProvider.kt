@@ -6,5 +6,5 @@ package com.example.yueyinplayer.const
  * @Date: 2020/8/4
  */
 object  IUrlProvider {
-
+//
 }
