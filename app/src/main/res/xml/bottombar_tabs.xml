@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_music_monad"
+        icon="@mipmap/ic_bottom_tabs_music"
+        title="悦单" />
+    <tab
+        id="@+id/tab_nearby"
+        icon="@mipmap/ic_bottom_tabs_vlist"
+        title="V榜" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@mipmap/ic_bottom_tabs_vlist"
+        title="V榜" />
+</tabs>
