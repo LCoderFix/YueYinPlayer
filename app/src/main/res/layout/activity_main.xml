@@ -3,23 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar"/>
 
     <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_bar"/>
+        android:layout_height="match_parent" />
 
-    <com.roughike.bottombar.BottomBar
+   <!-- <com.roughike.bottombar.BottomBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:gravity="center_vertical"
         app:bb_tabXmlResource="@xml/bottombar_tabs"
-        android:layout_alignParentBottom="true"/>
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"/>-->
 
 </RelativeLayout>

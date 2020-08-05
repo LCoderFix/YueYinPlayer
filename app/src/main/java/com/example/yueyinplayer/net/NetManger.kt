@@ -1,8 +1,9 @@
 package com.example.yueyinplayer.net
 
+import com.example.yueyinplayer.exts.MyTag
+import com.example.yueyinplayer.util.MasterLog
 import com.example.yueyinplayer.util.ThreadUtil
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import java.io.IOException
 import java.lang.reflect.ParameterizedType
@@ -12,22 +13,20 @@ import java.lang.reflect.ParameterizedType
  * @author liujundong
  * @Date: 2020/8/4
  */
-class NetWorkManger<REQUEST>(private val req: GenericRequest<REQUEST>) {
-     fun execute() {
-        val client = OkHttpClient()
+class NetManger<REQUEST>(private val req: MRequest<REQUEST>) {
+    private val client:OkHttpClient by lazy { OkHttpClient() }
+    fun execute() {
         val request = Request.Builder().url(req.url).build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 ThreadUtil.instance.onMainThread(Runnable { req.reqHandler.onError(e.toString()) })
-                req.reqHandler.onError(e.toString())
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val gson = Gson()
-                val superClass = NetWorkManger::class.java.genericSuperclass as ParameterizedType
-                val type = superClass.actualTypeArguments[0]
-                val list = gson.fromJson<List<REQUEST>>(response.body().toString(), type)
-                ThreadUtil.instance.onMainThread(Runnable { req.reqHandler.onSuccess(list) })
+                response.body()?.string()?.let {
+                    MasterLog.instance.e(MyTag, it)
+                    ThreadUtil.instance.onMainThread(Runnable { req.reqHandler.onSuccess(req.type,req.parseResult(it)) })
+                }
             }
         })
     }

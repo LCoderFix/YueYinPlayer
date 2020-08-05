@@ -14,5 +14,5 @@ interface ReqHandler<REQUEST> {
     /**
      * 请求数据成功时回调
      */
-    fun onSuccess(list:List<REQUEST>)
+    fun onSuccess(type:Int,response:REQUEST)
 }

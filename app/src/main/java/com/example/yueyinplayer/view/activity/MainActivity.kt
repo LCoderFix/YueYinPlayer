@@ -1,10 +1,9 @@
 package com.example.yueyinplayer.view.activity
 
-import androidx.appcompat.widget.Toolbar
 import com.example.yueyinplayer.R
 import com.example.yueyinplayer.base.BaseActivity
-import com.example.yueyinplayer.util.ToolBarManger
-import kotlinx.android.synthetic.main.toolbar.*
+import com.example.yueyinplayer.view.fragment.HomeFragment
+
 
 /**
  * @Description:
@@ -13,12 +12,11 @@ import kotlinx.android.synthetic.main.toolbar.*
  */
 class MainActivity : BaseActivity()  {
 //    override var toolBar: Toolbar = toolbar
-
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
 
     override fun initData() {
-        super.initData()
+        supportFragmentManager.beginTransaction().add(R.id.frame_layout,HomeFragment()).commit()
     }
 }
